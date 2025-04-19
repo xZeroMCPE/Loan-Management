@@ -18,6 +18,7 @@
                             <th class="border border-gray-500 p-2">Duration</th>
                             <th class="border border-gray-500 p-2">Borrower</th>
                             <th class="border border-gray-500 p-2">Lender</th>
+                            <th class="border border-gray-500 p-2">Comment</th>
                             <th class="border border-gray-500 p-2">Actions</th>
                         </tr>
                         </thead>
@@ -29,6 +30,7 @@
                                 <td class="border border-gray-500 p-2">{{ $loan->loan_duration }} years</td>
                                 <td class="border border-gray-500 p-2">{{ $loan->borrower->name }}</td>
                                 <td class="border border-gray-500 p-2">{{ $loan->lender->name }}</td>
+                                <td class="border border-gray-500 p-2">{{ $loan->comments }}</td>
                                 <td class="border border-gray-500 p-2">
                                     @if(auth()->id() === $loan->lender_id)
                                         <a href="{{ route('loans.update', $loan) }}" class="text-blue-500">Edit</a>
@@ -56,6 +58,7 @@
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
                         </select>
+                        <input type="text" name="comments" placeholder="Enter comments for this loan, used internally only"  class="w-full">
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create Loan</button>
                     </form>
                 </div>

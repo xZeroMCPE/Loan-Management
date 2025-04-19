@@ -40,6 +40,7 @@ class LoanController extends Controller
             'interest_rate' => 'required|numeric',
             'loan_duration' => 'required|integer',
             'borrower_id' => 'required|exists:users,id',
+            "comments" => "string|nullable",
         ]);
 
         $loan = Loan::create([
@@ -48,6 +49,7 @@ class LoanController extends Controller
             'loan_duration' => $request->loan_duration,
             'lender_id' => Auth::id(),
             'borrower_id' => $request->borrower_id,
+            'comments' => $request->comments
         ]);
 
         return response()->json($loan);
@@ -63,7 +65,7 @@ class LoanController extends Controller
             return response()->json(['message' => 'Unauthorized'], 403);
         }
 
-        $loan->update($request->only(['loan_amount', 'interest_rate', 'loan_duration']));
+        $loan->update($request->only(['loan_amount', 'interest_rate', 'loan_duration', 'comments']));
         return response()->json($loan);
     }
 

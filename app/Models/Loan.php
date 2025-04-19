@@ -10,7 +10,7 @@ class Loan extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['loan_amount', 'interest_rate', 'loan_duration', 'lender_id', 'borrower_id'];
+    protected $fillable = ['loan_amount', 'interest_rate', 'loan_duration', 'lender_id', 'borrower_id', 'comments'];
 
     public function lender()
     {
